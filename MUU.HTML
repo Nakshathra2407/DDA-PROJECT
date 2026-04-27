@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Smallest & Largest Element Finder</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        color: white;
+        text-align: center;
+    }
+
+    h1 {
+        margin-top: 30px;
+        font-size: 40px;
+        letter-spacing: 2px;
+    }
+
+    .container {
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
+        padding: 30px;
+        border-radius: 20px;
+        width: 60%;
+        margin: 40px auto;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    input {
+        width: 80%;
+        padding: 12px;
+        border-radius: 10px;
+        border: none;
+        font-size: 16px;
+        margin-top: 10px;
+        outline: none;
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 10px;
+        background: #00c6ff;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #0072ff;
+        transform: scale(1.05);
+    }
+
+    .result {
+        margin-top: 30px;
+        font-size: 20px;
+    }
+
+    .card {
+        display: inline-block;
+        padding: 15px 25px;
+        margin: 15px;
+        border-radius: 15px;
+        background: rgba(255,255,255,0.2);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        transition: 0.3s;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .footer {
+        margin-top: 30px;
+        font-size: 14px;
+        opacity: 0.8;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>🔍 Smallest & Largest Finder</h1>
+
+<div class="container">
+
+    <p>Enter numbers separated by space 👇</p>
+
+    <input type="text" id="numbers" placeholder="Example: 5 2 9 1 7">
+
+    <br>
+
+    <button onclick="findElements()">Find Elements</button>
+
+    <div class="result" id="output"></div>
+
+</div>
+
+<div class="footer">
+    💡 Uses Pre-Sorting Method (Sorting First, Then Finding Min & Max)
+</div>
+
+<script>
+function findElements() {
+    let input = document.getElementById("numbers").value;
+
+    if (input.trim() === "") {
+        alert("Please enter some numbers!");
+        return;
+    }
+
+    let arr = input.split(" ").map(Number);
+
+    // Pre-Sorting
+    arr.sort(function(a, b) {
+        return a - b;
+    });
+
+    let smallest = arr[0];
+    let largest = arr[arr.length - 1];
+
+    document.getElementById("output").innerHTML = `
+        <div class="card">📊 Sorted Array: ${arr.join(", ")}</div><br>
+        <div class="card">🔽 Smallest: ${smallest}</div>
+        <div class="card">🔼 Largest: ${largest}</div>
+    `;
+}
+</script>
+
+</body>
+</html>
